@@ -1,0 +1,24 @@
+      * CRTVARS.DEF - definitions of commonly needed screen handling variables
+      * Date written: 27-Aug-96 - TDC.
+
+      * Copyright (c) 1996-2005 by Acucorp, Inc.  Users of ACUCOBOL
+      * may freely include this file in their COBOL source code.
+
+       01  EVENT-STATUS
+           IS SPECIAL-NAMES EVENT STATUS.
+           03  EVENT-TYPE                      PIC X(4) COMP-X.
+           03  EVENT-WINDOW-HANDLE             HANDLE OF WINDOW.
+           03  EVENT-CONTROL-HANDLE            HANDLE.
+           03  EVENT-CONTROL-ID                PIC XX COMP-X.
+           03  EVENT-DATA-1                    SIGNED-SHORT.
+           03  EVENT-DATA-2                    SIGNED-LONG.
+           03  EVENT-ACTION                    PIC X COMP-X.
+
+       01  SCREEN-CONTROL
+           IS SPECIAL-NAMES SCREEN CONTROL.
+           03  ACCEPT-CONTROL                  PIC 9.
+           03  CONTROL-VALUE                   PIC 999.
+           03  CONTROL-HANDLE                  HANDLE.
+           03  CONTROL-ID                      PIC XX COMP-X.
+
+      * End of CRTVARS.DEF

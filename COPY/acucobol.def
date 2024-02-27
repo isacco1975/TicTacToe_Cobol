@@ -1,0 +1,324 @@
+      * ACUCOBOL.DEF - Some useful ACUCOBOL definitions.
+      * Last modified: 07-May-2001 TDC.
+
+      * Copyright (c) 1996-2005 by Acucorp, Inc.  Users of ACUCOBOL
+      * may freely include this file in their COBOL source code.
+
+       01  TERMINAL-ABILITIES.
+           03  TERMINAL-NAME                   PIC X(10).
+           03  FILLER                          PIC X.
+               88  HAS-REVERSE                 VALUE "Y".
+           03  FILLER                          PIC X.
+               88  HAS-BLINK                   VALUE "Y".
+           03  FILLER                          PIC X.
+               88  HAS-UNDERLINE               VALUE "Y".
+           03  FILLER                          PIC X.
+               88  HAS-DUAL-INTENSITY          VALUE "Y".
+           03  FILLER                          PIC X.
+               88  HAS-132-COLUMN-MODE         VALUE "Y".
+           03  FILLER                          PIC X.
+               88  HAS-COLOR                   VALUE "Y".
+           03  FILLER                          PIC X.
+               88  HAS-LINE-DRAWING            VALUE "Y".
+           03  NUMBER-OF-SCREEN-LINES          PIC 9(3).
+           03  NUMBER-OF-SCREEN-COLUMNS        PIC 9(3).
+           03  FILLER                          PIC X.
+               88  HAS-LOCAL-PRINTER           VALUE "Y".
+           03  FILLER                          PIC X.
+               88  HAS-VISIBLE-ATTRIBUTES      VALUE "Y".
+           03  FILLER                          PIC X.
+               88  HAS-GRAPHICAL-INTERFACE     VALUE "Y".
+           03  USABLE-SCREEN-HEIGHT            PIC X(2) COMP-X.
+           03  USABLE-SCREEN-WIDTH             PIC X(2) COMP-X.
+           03  PHYSICAL-SCREEN-HEIGHT          PIC X(2) COMP-X.
+           03  PHYSICAL-SCREEN-WIDTH           PIC X(2) COMP-X.
+           03  FILLER                          PIC X.
+               88  IS-REMOTE                   VALUE "Y".
+           03  CLIENT-MACHINE-NAME             PIC X(64).
+           03  FILLER                          PIC X.
+               88  ACU-NO-TERMINAL             VALUE "Y".
+
+
+       01  SYSTEM-INFORMATION.
+           03  OPERATING-SYSTEM                PIC X(10).
+               88  OS-IS-MSDOS                 VALUE "MS-DOS".
+               88  OS-IS-OS2                   VALUE "OS/2".
+               88  OS-IS-VMS                   VALUES "VMS",
+                                               "VAX/VMS".
+               88  OS-IS-UNIX                  VALUES "Unix",
+                                                      "Unix-V", "Unix-4",
+                                                      "UNOS".
+               88  OS-IS-AOS                   VALUE "AOS/VS".
+               88  OS-IS-WINDOWS               VALUE "WINDOWS".
+               88  OS-IS-WIN-NT                VALUE "WIN/NT".
+               88  OS-IS-WIN-FAMILY            VALUES "WINDOWS",
+                                                      "WIN/NT".
+               88  OS-IS-AMOS                  VALUE "AMOS".
+               88  OS-IS-MPE                   VALUE "MPE/iX".
+               88  OS-IS-MPEIX                 VALUE "MPE/iX".
+           03  USER-ID                         PIC X(12).
+           03  STATION-ID                      PIC X(12).
+           03  FILLER                          PIC X.
+               88  HAS-INDEXED-READ-PREVIOUS   VALUE "Y".
+           03  FILLER                          PIC X.
+               88  HAS-RELATIVE-READ-PREVIOUS  VALUE "Y".
+           03  FILLER                          PIC X.
+               88  CAN-TEST-INPUT-STATUS       VALUE "Y".
+           03  FILLER                          PIC X.
+               88  IS-MULTI-TASKING            VALUE "Y".
+           03  RUNTIME-VERSION.
+               88  VERSION-PRIOR-TO-2-2        VALUE SPACES.
+               05  RUNTIME-MAJOR-VERSION       PIC 99.
+               05  RUNTIME-MINOR-VERSION       PIC 99.
+               05  RUNTIME-RELEASE             PIC 99.
+           03  FILLER                          PIC X.
+               88  IS-PLUGIN                   VALUE "Y".
+           03  SERIAL-NUMBER                   PIC X(20).
+           03  FILLER                          PIC X.
+               88  HAS-LARGE-FILE-SUPPORT      VALUE "Y".
+
+       01  BROWSERINFO-DATA.
+           03  USER-AGENT-STRING               PIC X(50).
+           03  BROWSER-MAJOR-VERSION           PIC X COMP-X.
+           03  BROWSER-MINOR-VERSION           PIC X COMP-X.
+
+       78  BLACK                               VALUE 1.
+       78  BLUE                                VALUE 2.
+       78  GREEN                               VALUE 3.
+       78  CYAN                                VALUE 4.
+       78  RED                                 VALUE 5.
+       78  MAGENTA                             VALUE 6.
+       78  BROWN                               VALUE 7.
+       78  WHITE                               VALUE 8.
+       78  DARK-GRAY                           VALUE 9.
+       78  BRIGHT-BLUE                         VALUE 10.
+       78  BRIGHT-GREEN                        VALUE 11.
+       78  BRIGHT-CYAN                         VALUE 12.
+       78  BRIGHT-RED                          VALUE 13.
+       78  BRIGHT-MAGENTA                      VALUE 14.
+       78  YELLOW                              VALUE 15.
+       78  BRIGHT-WHITE                        VALUE 16.
+       78  BCKGRND-BLACK                       VALUE 32.
+       78  BCKGRND-BLUE                        VALUE 64.
+       78  BCKGRND-GREEN                       VALUE 96.
+       78  BCKGRND-CYAN                        VALUE 128.
+       78  BCKGRND-RED                         VALUE 160.
+       78  BCKGRND-MAGENTA                     VALUE 192.
+       78  BCKGRND-BROWN                       VALUE 224.
+       78  BCKGRND-WHITE                       VALUE 256.
+       78  BCKGRND-DARK-GRAY                   VALUE 288.
+       78  BCKGRND-BRIGHT-BLUE                 VALUE 320.
+       78  BCKGRND-BRIGHT-GREEN                VALUE 352.
+       78  BCKGRND-BRIGHT-CYAN                 VALUE 384.
+       78  BCKGRND-BRIGHT-RED                  VALUE 416.
+       78  BCKGRND-BRIGHT-MAGENTA              VALUE 448.
+       78  BCKGRND-YELLOW                      VALUE 480.
+       78  BCKGRND-BRIGHT-WHITE                VALUE 512.
+       78  COLOR-REVERSE                       VALUE 1024.
+       78  FRGRND-LOW                          VALUE 2048.
+       78  FRGRND-HIGH                         VALUE 4096.
+       78  COLOR-UNDERLINE                     VALUE 8192.
+       78  COLOR-BLINK                         VALUE 16384.
+       78  COLOR-PROTECTED                     VALUE 32768.
+       78  BCKGRND-LOW                         VALUE 65536.
+       78  BCKGRND-HIGH                        VALUE 131072.
+       78  WINDOW-BRIGHT-WHITE                 VALUE 131328.
+
+      *  Options for C$RERR STATUS-TYPE
+
+       78  GET-FILE-STATUS                     VALUE 1.
+       78  GET-TRANSACTION-STATUS              VALUE 2.
+
+      *  Opcodes for C$FILESYS
+
+       78  START-FILESYSTEM-LIST               VALUE 0.
+       78  CONTINUE-FILESYSTEM-LIST            VALUE 1.
+       78  CHECK-FOR-FILESYSTEM                VALUE 2.
+       78  NUMBER-OF-FILESYSTEMS               VALUE 3.
+
+       77  FILESYSTEM                          PIC X(5).
+
+      * Flags for "C$SYSTEM"
+
+       78  CSYS-ASYNC                          VALUE 1.
+       78  CSYS-NO-IO                          VALUE 2.
+       78  CSYS-MAXIMIZED                      VALUE 4.
+       78  CSYS-MINIMIZED                      VALUE 8.
+       78  CSYS-COMPATIBILITY                  VALUE 16.
+       78  CSYS-HIDDEN                         VALUE 32.
+       78  CSYS-SHELL                          VALUE 64.
+       78  CSYS-DESKTOP                        VALUE 128.
+
+      * Return codes for "C$PING"
+
+       78  CPING_OK                            VALUE 0.
+       78  CPING_NO_CLIENT                     VALUE 1.
+       78  CPING_PARAM_ERROR                   VALUE 2.
+       78  CPING_CONN_REFUSED                  VALUE 3.
+       78  CPING_VERSION_ERROR                 VALUE 4.
+       78  CPING_SOCKET_ERROR                  VALUE 5.
+
+      * Opcodes for C$LIST-DIRECTORY
+
+       78  LISTDIR-OPEN                        VALUE 1.
+       78  LISTDIR-NEXT                        VALUE 2.
+       78  LISTDIR-CLOSE                       VALUE 3.
+
+      * The file information group passed to C$LIST-DIRECTORY
+       01  LISTDIR-FILE-INFORMATION.
+           03  LISTDIR-FILE-TYPE               PIC X.
+               88  LISTDIR-FILE-TYPE-BLOCK-DEVICE          VALUE "B".
+               88  LISTDIR-FILE-TYPE-CHARACTER-DEVICE      VALUE "C".
+               88  LISTDIR-FILE-TYPE-DIRECTORY             VALUE "D".
+               88  LISTDIR-FILE-TYPE-REGULAR-FILE          VALUE "F".
+               88  LISTDIR-FILE-TYPE-PIPE                  VALUE "P".
+               88  LISTDIR-FILE-TYPE-SOCKET                VALUE "S".
+               88  LISTDIR-FILE-TYPE-UNKNOWN               VALUE "U".
+           03  LISTDIR-FILE-CREATION-TIME.
+               05  LDFC-YEAR                   PIC XX COMP-X.
+               05  LDFC-MONTH                  PIC X COMP-X.
+               05  LDFC-DAY                    PIC X COMP-X.
+               05  LDFC-HOUR                   PIC X COMP-X.
+               05  LDFC-MINUTE                 PIC X COMP-X.
+               05  LDFC-SECOND                 PIC X COMP-X.
+               05  LDFC-HUNDRETHS              PIC X COMP-X.
+           03  LISTDIR-FILE-LAST-ACCESS-TIME.
+               05  LDFLA-YEAR                  PIC XX COMP-X.
+               05  LDFLA-MONTH                 PIC X COMP-X.
+               05  LDFLA-DAY                   PIC X COMP-X.
+               05  LDFLA-HOUR                  PIC X COMP-X.
+               05  LDFLA-MINUTE                PIC X COMP-X.
+               05  LDFLA-SECOND                PIC X COMP-X.
+               05  LDFLA-HUNDRETHS             PIC X COMP-X.
+           03  LISTDIR-FILE-LAST-MODIFICATION-TIME.
+               05  LDFLM-YEAR                  PIC XX COMP-X.
+               05  LDFLM-MONTH                 PIC X COMP-X.
+               05  LDFLM-DAY                   PIC X COMP-X.
+               05  LDFLM-HOUR                  PIC X COMP-X.
+               05  LDFLM-MINUTE                PIC X COMP-X.
+               05  LDFLM-SECOND                PIC X COMP-X.
+               05  LDFLM-HUNDRETHS             PIC X COMP-X.
+           03  LISTDIR-FILE-SIZE               PIC X(8) COMP-X.
+
+      * Opcodes for C$XML
+
+       78  CXML-PARSE-FILE                     VALUE 1.
+       78  CXML-RELEASE-PARSER                 VALUE 2.
+       78  CXML-GET-FIRST-CHILD                VALUE 3.
+       78  CXML-GET-NEXT-SIBLING               VALUE 4.
+       78  CXML-GET-PARENT                     VALUE 5.
+       78  CXML-GET-DATA                       VALUE 6.
+       78  CXML-GET-ATTRIBUTE-COUNT            VALUE 7.
+       78  CXML-GET-ATTRIBUTE                  VALUE 8.
+       78  CXML-GET-LAST-ERROR                 VALUE 9.
+       78  CXML-OPEN-FILE                      VALUE 10.
+       78  CXML-PARSE-STRING                   VALUE 11.
+       78  CXML-PARSE-NEXT-RECORD              VALUE 12.
+       78  CXML-GET-PREV-SIBLING               VALUE 13.
+       78  CXML-NEW-PARSER                     VALUE 14.
+       78  CXML-GET-ATTRIBUTE-BY-NAME          VALUE 15.
+       78  CXML-GET-CHILD-BY-NAME              VALUE 16.
+       78  CXML-GET-CHILD-BY-CDATA             VALUE 17.
+       78  CXML-GET-CHILD-BY-ATTR-NAME         VALUE 18.
+       78  CXML-GET-CHILD-BY-ATTR-VALUE        VALUE 19.
+       78  CXML-GET-SIBLING-BY-NAME            VALUE 20.
+       78  CXML-GET-SIBLING-BY-CDATA           VALUE 21.
+       78  CXML-GET-SIBLING-BY-ATTR-NAME       VALUE 22.
+       78  CXML-GET-SIBLING-BY-ATTR-VALUE      VALUE 23.
+       78  CXML-GET-COMMENT                    VALUE 24.
+       78  CXML-MODIFY-CDATA                   VALUE 25.
+       78  CXML-MODIFY-ATTRIBUTE-VALUE         VALUE 26.
+       78  CXML-ADD-CHILD                      VALUE 27.
+       78  CXML-ADD-SIBLING                    VALUE 28.
+       78  CXML-ADD-ATTRIBUTE                  VALUE 29.
+       78  CXML-ADD-COMMENT                    VALUE 30.
+       78  CXML-APPEND-COMMENT                 VALUE 31.
+       78  CXML-DELETE-ATTRIBUTE               VALUE 32.
+       78  CXML-DELETE-ELEMENT                 VALUE 33.
+       78  CXML-DELETE-COMMENT                 VALUE 34.
+       78  CXML-WRITE-FILE                     VALUE 35.
+
+      * Error codes for C$XML
+
+      * Unable to create parser due to low memory
+       78  CXML-NO-MEMORY                      VALUE 1.
+      * Unable to create parser - expat error
+       78  CXML-EXPAT-ERROR                    VALUE 2.
+      * Unable to open named file
+       78  CXML-FILE-OPEN-ERROR                VALUE 3.
+      * Invalid XML file or other parsing error
+       78  CXML-PARSE-ERROR                    VALUE 4.
+      * The passed handle is not a valid parser handle
+       78  CXML-INVALID-PARSER-HANDLE          VALUE 5.
+      * The passed handle is not a valid element handle
+       78  CXML-INVALID-ELEMENT-HANDLE         VALUE 6.
+      * Invalid attribute number
+       78  CXML-INVALID-ATTRIBUTE-NUMBER       VALUE 7.
+      * The URL given could not be accessed
+       78  CXML-URL-ERROR                      VALUE 8.
+      * The XML parser is not available on this machine
+       78  CXML-NOT-AVAILABLE                  VALUE 9.
+      * The specified element has no children
+       78  CXML-NO-CHILDREN                    VALUE 10.
+      * The specified element has no siblings
+       78  CXML-NO-SIBLINGS                    VALUE 11.
+      * The specified element is a top-level element
+       78  CXML-NO-PARENT                      VALUE 12.
+      * The specified element has no value
+       78  CXML-NO-VALUE                       VALUE 13.
+      * The specified element has no attributes
+       78  CXML-NO-ATTRIBUTES                  VALUE 14.
+      * The regular expression given caused an error
+       78  CXML-REGEXP-ERROR                   VALUE 15.
+      * The specified parser already has a top-level element
+       78  CXML-TOP-LEVEL                      VALUE 16.
+
+      * Opcodes for C$CONFIG (not many yet, but open for expansion)
+
+       78  CCONFIG-RESET                       VALUE 1.
+
+      * Opcodes for C$REGEXP
+
+       78  AREGEXP-GET-LEVEL                   VALUE 1.
+       78  AREGEXP-COMPILE                     VALUE 2.
+       78  AREGEXP-MATCH                       VALUE 3.
+       78  AREGEXP-RELEASE-MATCH               VALUE 4.
+       78  AREGEXP-RELEASE                     VALUE 5.
+       78  AREGEXP-NUMGROUPS                   VALUE 6.
+       78  AREGEXP-GETMATCH                    VALUE 7.
+       78  AREGEXP-LAST-ERROR                  VALUE 20.
+
+      *  FLAGS for AREGEXP-COMPILE
+
+       78  AREGEXP-COMPILE-IGNORECASE          VALUE 1.
+       78  AREGEXP-COMPILE-BASIC               VALUE 2.
+       78  AREGEXP-COMPILE-NO-SPECIAL          VALUE 4.
+       78  AREGEXP-COMPILE-NO-SUB              VALUE 8.
+       78  AREGEXP-COMPILE-NEWLINE             VALUE 16.
+       78  AREGEXP-COMPILE-NO-REGEXP           VALUE 32.
+
+      *  Error codes for C$REGEXP
+
+       78  AREGEXP-ERROR-NO-ERROR              VALUE 0.
+       78  AREGEXP-ERROR-NO-MEMORY             VALUE 1.
+       78  AREGEXP-ERROR-BRACE-EXPECTED        VALUE 2.
+       78  AREGEXP-ERROR-PAREN-EXPECTED        VALUE 3.
+       78  AREGEXP-ERROR-BRACKET-EXPECTED      VALUE 4.
+       78  AREGEXP-ERROR-UNEXPECTED            VALUE 5.
+       78  AREGEXP-ERROR-EMPTY-RANGE           VALUE 6.
+       78  AREGEXP-ERROR-INVALID-GROUP         VALUE 7.
+       78  AREGEXP-ERROR-INVALID-RANGE         VALUE 8.
+       78  AREGEXP-ERROR-EMPTY-REPEATOP        VALUE 9.
+       78  AREGEXP-ERROR-INVALID-INPUT         VALUE 10.
+       78  AREGEXP-ERROR-INVALID-HANDLE        VALUE 11.
+       78  AREGEXP-ERROR-INVALID-ARGUMENT      VALUE 12.
+       78  AREGEXP-ERROR-INVALID-CALL-SEQ      VALUE 13.
+       78  AREGEXP-ERROR-NO-MATCH              VALUE 14.
+
+      *  Return codes for C$REGEXP AREGEXP-GET-LEVEL
+
+       78  AREGEXP-NONE                        VALUE 0.
+       78  AREGEXP-WINDOWS                     VALUE 1.
+       78  AREGEXP-POSIX                       VALUE 2.
+
+      * end of acucobol.def

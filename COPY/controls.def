@@ -1,0 +1,407 @@
+      * CONTROLS.DEF - style and property names for graphical controls
+      * Last modified: 10-Oct-2002 - TDC.
+
+      * Copyright (c) 1996-2005 by Acucorp, Inc.  Users of ACUCOBOL-GT
+      * may freely include this file in their COBOL source code.
+
+      * Control type names
+
+       78  CTL-LABEL                           VALUE 1.
+       78  CTL-ENTRY-FIELD                     VALUE 2.
+       78  CTL-PUSH-BUTTON                     VALUE 3.
+       78  CTL-CHECK-BOX                       VALUE 4.
+       78  CTL-RADIO-BUTTON                    VALUE 5.
+       78  CTL-SCROLL-BAR                      VALUE 6.
+       78  CTL-LIST-BOX                        VALUE 7.
+       78  CTL-COMBO-BOX                       VALUE 8.
+       78  CTL-FRAME                           VALUE 9.
+       78  CTL-TAB                             VALUE 10.
+       78  CTL-BAR                             VALUE 11.
+       78  CTL-GRID                            VALUE 12.
+       78  CTL-BITMAP                          VALUE 13.
+       78  CTL-TREE-VIEW                       VALUE 14.
+       78  CTL-WEB-BROWSER                     VALUE 15.
+       78  CTL-ACTIVE-X                        VALUE 16.
+       78  CTL-STATUS-BAR                      VALUE 17.
+       78  CTL-DATE-ENTRY                      VALUE 18.
+
+      * Generic style names that apply to several types of controls
+
+       78  S-PERMANENT                         VALUE 1073741824.
+       78  S-TEMPORARY                         VALUE 536870912.
+       78  S-NOTAB                             VALUE 268435456.
+       78  S-HEIGHT-IN-CELLS                   VALUE 134217728.
+       78  S-WIDTH-IN-CELLS                    VALUE 67108864.
+       78  S-3D                                VALUE 33554432.
+       78  S-OVERLAP-LEFT                      VALUE 16777216.
+       78  S-OVERLAP-TOP                       VALUE 8388608.
+       78  S-SELF-ACT                          VALUE 4194304.
+       78  S-NOTIFY                            VALUE 2097152.
+
+       78  P-TERMINATION-VALUE                 VALUE 1.
+       78  P-EXCEPTION-VALUE                   VALUE 2.
+
+      * LABEL styles and properties
+
+       78  LS-LEFT                             VALUE 1.
+       78  LS-RIGHT                            VALUE 2.
+       78  LS-CENTER                           VALUE 4.
+       78  LS-NO-KEY-LETTER                    VALUE 8.
+       78  LS-TRANSPARENT                      VALUE 16.
+
+       78  LP-LABEL-OFFSET                     VALUE 1.
+
+      * ENTRY-FIELD styles and properties
+
+       78  EFS-LEFT                            VALUE 1.
+       78  EFS-RIGHT                           VALUE 2.
+       78  EFS-CENTER                          VALUE 4.
+       78  EFS-BOX                             VALUE 8.
+       78  EFS-NO-BOX                          VALUE 16.
+       78  EFS-MULTILINE                       VALUE 32.
+       78  EFS-VSCROLL                         VALUE 96.
+       78  EFS-VSCROLL-BAR                     VALUE 224.
+       78  EFS-USE-RETURN                      VALUE 256.
+       78  EFS-USE-TAB                         VALUE 512.
+       78  EFS-UPPER                           VALUE 1024.
+       78  EFS-LOWER                           VALUE 2048.
+       78  EFS-NO-AUTOSEL                      VALUE 4096.
+       78  EFS-READ-ONLY                       VALUE 8192.
+       78  EFS-AUTOTERMINATE                   VALUE 16384.
+       78  EFS-NOTIFY-CHANGE                   VALUE 32768.
+       78  EFS-SECURE                          VALUE 65536.
+       78  EFS-NUMERIC                         VALUE 131072.
+       78  EFS-SPINNER                         VALUE 262144.
+       78  EFS-AUTO-SPIN                       VALUE 262208.
+
+       78  EFP-MAX-TEXT                        VALUE 3.
+       78  EFP-MAX-LINES                       VALUE 4.
+       78  EFP-MIN-VAL                         VALUE 5.
+       78  EFP-MAX-VAL                         VALUE 6.
+       78  EFP-AUTO-DECIMAL                    VALUE 7.
+       78  EFP-CURSOR-ROW                      VALUE 8.
+       78  EFP-CURSOR                          VALUE 4097.
+       78  EFP-ACTION                          VALUE 4098.
+       78  EFP-SELECTION-TEXT                  VALUE 4099.
+       78  EFP-CURSOR-COL                      VALUE 4100.
+
+      * PUSH-BUTTON styles and properties
+
+       78  PBS-DEFAULT-BUTTON                  VALUE 1.
+       78  PBS-ESCAPE-BUTTON                   VALUE 2.
+       78  PBS-OK-BUTTON                       VALUE 4.
+       78  PBS-CANCEL-BUTTON                   VALUE 8.
+       78  PBS-NO-AUTO-DEFAULT                 VALUE 16.
+       78  PBS-BITMAP                          VALUE 32768.
+       78  PBS-SQUARE                          VALUE 16384.
+       78  PBS-FRAMED                          VALUE 8192.
+       78  PBS-UNFRAMED                        VALUE 4096.
+       78  PBS-FLAT                            VALUE 2048.
+       78  PBS-MULTILINE                       VALUE 1024.
+
+       78  PBP-BITMAP-NUMBER                   VALUE 3.
+       78  PBP-BITMAP-HANDLE                   VALUE 4.
+
+      * CHECK-BOX styles and properties
+
+       78  CBS-BITMAP                          VALUE 32768.
+       78  CBS-SQUARE                          VALUE 16384.
+       78  CBS-FRAMED                          VALUE 8192.
+       78  CBS-UNFRAMED                        VALUE 4096.
+       78  CBS-FLAT                            VALUE 2048.
+       78  CBS-MULTILINE                       VALUE 1024.
+       78  CBS-VTOP                            VALUE 512. 
+       78  CBS-LEFT-TEXT                       VALUE 2.
+
+       78  CBP-BITMAP-NUMBER                   VALUE 3.
+       78  CBP-BITMAP-HANDLE                   VALUE 4.
+
+      * RADIO-BUTTON styles and properties
+
+       78  RBS-NO-GROUP-TAB                    VALUE 1.
+       78  RBS-LEFT-TEXT                       VALUE 2.
+       78  RBS-BITMAP                          VALUE 32768.
+       78  RBS-SQUARE                          VALUE 16384.
+       78  RBS-FRAMED                          VALUE 8192.
+       78  RBS-UNFRAMED                        VALUE 4096.
+       78  RBS-FLAT                            VALUE 2048.
+       78  RBS-MULTILINE                       VALUE 1024.
+       78  RBS-VTOP                            VALUE 512.
+
+       78  RBP-BITMAP-NUMBER                   VALUE 3.
+       78  RBP-BITMAP-HANDLE                   VALUE 4.
+       78  RBP-GROUP                           VALUE 5.
+       78  RBP-GROUP-VALUE                     VALUE 6.
+
+      * SCROLL-BAR styles and properties
+
+       78  SBS-HORIZONTAL                      VALUE 1.
+       78  SBS-TRACK-THUMB                     VALUE 2.
+
+       78  SBP-MIN-VAL                         VALUE 1.
+       78  SBP-MAX-VAL                         VALUE 2.
+       78  SBP-PAGE-SIZE                       VALUE 3.
+
+      * LIST-BOX styles and properties
+
+       78  LBS-UNSORTED                        VALUE 1.
+       78  LBS-NO-BOX                          VALUE 2.
+       78  LBS-BOX                             VALUE 4.
+       78  LBS-NOTIFY-DBLCLICK                 VALUE 256.
+       78  LBS-NOTIFY-SELCHANGE                VALUE 512.
+       78  LBS-PAGED                           VALUE 1024.
+       78  LBS-UPPER                           VALUE 2048.
+       78  LBS-LOWER                           VALUE 4096.
+       78  LBS-NO-SEARCH                       VALUE 8192.
+
+       78  LBP-MASS-UPDATE                     VALUE 3.
+       78  LBP-INSERTION-INDEX                 VALUE 4.
+       78  LBP-DATA-COLUMNS                    VALUE 5.
+       78  LBP-DISPLAY-COLUMNS                 VALUE 6.
+       78  LBP-QUERY-INDEX                     VALUE 7.
+       78  LBP-ALIGNMENT                       VALUE 8.
+       78  LBP-SEPARATION                      VALUE 9.
+       78  LBP-DIVIDERS                        VALUE 10.
+       78  LBP-SORT-ORDER                      VALUE 11.
+       78  LBP-ITEM-TO-ADD                     VALUE 4097.
+       78  LBP-RESET-LIST                      VALUE 4098.
+       78  LBP-ITEM-TO-DELETE                  VALUE 4099.
+       78  LBP-SEARCH-TEXT                     VALUE 4100.
+       78  LBP-SELECTION-INDEX                 VALUE 4103.
+       78  LBP-ITEM-VALUE                      VALUE 4104.
+       78  LBP-THUMB-POSITION                  VALUE 4105.
+
+      * COMBO-BOX styles and properties
+
+       78  CMS-UNSORTED                        VALUE 1.
+       78  CMS-DROP-DOWN                       VALUE 0.
+       78  CMS-STATIC-LIST                     VALUE 2.
+       78  CMS-DROP-LIST                       VALUE 4.
+       78  CMS-BOX                             VALUE 8.
+       78  CMS-NO-BOX                          VALUE 16.
+       78  CMS-NOTIFY-DBLCLICK                 VALUE 256.
+       78  CMS-NOTIFY-SELCHANGE                VALUE 512.
+       78  CMS-UPPER                           VALUE 2048.
+       78  CMS-LOWER                           VALUE 4096.
+
+       78  CMP-MASS-UPDATE                     VALUE 3.
+       78  CMP-MAX-TEXT                        VALUE 4.
+       78  CMP-INSERTION-INDEX                 VALUE 5.
+       78  CMP-ITEM-TO-ADD                     VALUE 4097.
+       78  CMP-RESET-LIST                      VALUE 4098.
+       78  CMP-ITEM-TO-DELETE                  VALUE 4099.
+
+      * FRAME styles and properties
+
+       78  FS-RAISED                           VALUE 1.
+       78  FS-LOWERED                          VALUE 2.
+       78  FS-ENGRAVED                         VALUE 4.
+       78  FS-RIMMED                           VALUE 8.
+       78  FS-HEAVY                            VALUE 16.
+       78  FS-VERY-HEAVY                       VALUE 32.
+       78  FS-ALTERNATE                        VALUE 64.
+       78  FS-FULL-HEIGHT                      VALUE 128.
+
+       78  FP-HIGH-COLOR                       VALUE 1.
+       78  FP-LOW-COLOR                        VALUE 2.
+       78  FP-FILL-COLOR                       VALUE 3.
+       78  FP-FILL-PERCENT                     VALUE 4.
+       78  FP-FILL-COLOR2                      VALUE 5.
+       78  FP-TITLE-POSITION                   VALUE 6.
+
+      * TAB-CONTROL styles and properties
+
+       78  TS-MULTILINE                        VALUE 1.
+       78  TS-BUTTONS                          VALUE 2.
+       78  TS-FIXED-WIDTH                      VALUE 4.
+       78  TS-BOTTOM                           VALUE 8.
+       78  TS-VERTICAL                         VALUE 17.
+       78  TS-FLAT-BUTTONS                     VALUE 32.
+       78  TS-HOT-TRACK                        VALUE 64.
+       78  TS-NO-DIVIDERS                      VALUE 128.
+       78  TS-NO-FOCUS                         VALUE 256.
+
+       78  TP-BITMAP-HANDLE                    VALUE 1.
+       78  TP-BITMAP-WIDTH                     VALUE 2.
+       78  TP-BITMAP-NUMBER                    VALUE 3.
+       78  TP-TAB-TO-ADD                       VALUE 4097.
+       78  TP-RESET-TABS                       VALUE 4098.
+       78  TP-TAB-TO-DELETE                    VALUE 4099.
+
+      * BAR styles and properties
+
+       78  BRS-DOTTED                          VALUE 1.
+       78  BRS-DASHED                          VALUE 2.
+       78  BRS-DOTDASH                         VALUE 3.
+
+       78  BRP-WIDTH                           VALUE 1.
+       78  BRP-COLORS                          VALUE 2.
+       78  BRP-SHADING                         VALUE 3.
+       78  BRP-POSITION-SHIFT                  VALUE 4.
+       78  BRP-LEADING-SHIFT                   VALUE 5.
+       78  BRP-TRAILING-SHIFT                  VALUE 6.
+
+      * BITMAP styles and properties
+
+       78  BTP-BITMAP-NUMBER                   VALUE 1.
+       78  BTP-BITMAP-HANDLE                   VALUE 2.
+       78  BTP-BITMAP-START                    VALUE 3.
+       78  BTP-BITMAP-END                      VALUE 4.
+       78  BTP-BITMAP-TIMER                    VALUE 5.
+       78  BTP-BITMAP-TRANSPARENT-COLOR        VALUE 6.
+
+      * GRID styles and properties
+
+       78  GRS-BOXED                           VALUE 1.
+       78  GRS-NO-BOX                          VALUE 2.
+       78  GRS-VSCROLL                         VALUE 4.
+       78  GRS-HSCROLL                         VALUE 8.
+       78  GRS-COLUMN-HEADINGS                 VALUE 16.
+       78  GRS-ROW-HEADINGS                    VALUE 32.
+       78  GRS-TILED-HEADINGS                  VALUE 64.
+       78  GRS-CENTERED-HEADINGS               VALUE 128.
+       78  GRS-USE-TAB                         VALUE 256.
+       78  GRS-ADJUSTABLE-COLUMNS              VALUE 512.
+       78  GRS-PAGED                           VALUE 1024.
+
+       78  GRP-ROW-DIVIDERS                    VALUE 1.
+       78  GRP-VPADDING                        VALUE 2.
+       78  GRP-DIVIDER-COLOR                   VALUE 3.
+       78  GRP-INSERTION-INDEX                 VALUE 4.
+       78  GRP-DATA-COLUMNS                    VALUE 5.
+       78  GRP-DISPLAY-COLUMNS                 VALUE 6.
+       78  GRP-ALIGNMENT                       VALUE 7.
+       78  GRP-SEPARATION                      VALUE 8.
+       78  GRP-COLUMN-DIVIDERS                 VALUE 9.
+       78  GRP-ROW-COLOR-PATTERN               VALUE 10.
+       78  GRP-Y                               VALUE 11.
+       78  GRP-X                               VALUE 12.
+       78  GRP-COLUMN-COLOR                    VALUE 13.
+       78  GRP-ROW-COLOR                       VALUE 14.
+       78  GRP-CELL-COLOR                      VALUE 15.
+       78  GRP-COLUMN-FONT                     VALUE 16.
+       78  GRP-ROW-FONT                        VALUE 17.
+       78  GRP-CELL-FONT                       VALUE 18.
+       78  GRP-BITMAP                          VALUE 19.
+       78  GRP-BITMAP-NUMBER                   VALUE 20.
+       78  GRP-BITMAP-WIDTH                    VALUE 21.
+       78  GRP-BITMAP-TRAILING                 VALUE 22.
+       78  GRP-NUM-ROWS                        VALUE 23.
+       78  GRP-CURSOR-Y                        VALUE 24.
+       78  GRP-CURSOR-X                        VALUE 25.
+       78  GRP-CURSOR-FRAME-WIDTH              VALUE 26.
+       78  GRP-VIRTUAL-WIDTH                   VALUE 27.
+       78  GRP-DATA-TYPES                      VALUE 28.
+       78  GRP-CURSOR-COLOR                    VALUE 29.
+       78  GRP-HEADING-COLOR                   VALUE 30.
+       78  GRP-HEADING-FONT                    VALUE 31.
+       78  GRP-HEADING-DIVIDER-COLOR           VALUE 32.
+       78  GRP-START-X                         VALUE 33.
+       78  GRP-START-Y                         VALUE 34.
+       78  GRP-REGION-COLOR                    VALUE 35.
+       78  GRP-MASS-UPDATE                     VALUE 36.
+       78  GRP-HIDDEN-DATA                     VALUE 37.
+       78  GRP-END-COLOR                       VALUE 38.
+       78  GRP-FILE-POS                        VALUE 39.
+       78  GRP-NUM-COL-HEADINGS                VALUE 40.
+       78  GRP-DRAG-COLOR                      VALUE 41.
+       78  GRP-FINISH-REASON                   VALUE 42.
+       78  GRP-COLUMN-PROTECTION               VALUE 43.
+       78  GRP-ROW-PROTECTION                  VALUE 44.
+       78  GRP-CELL-PROTECTION                 VALUE 45.
+       78  GRP-RECORD-TO-ADD                   VALUE 4097.
+       78  GRP-RESET-GRID                      VALUE 4098.
+       78  GRP-CELL-DATA                       VALUE 4099.
+       78  GRP-RECORD-TO-DELETE                VALUE 4100.
+       78  GRP-RECORD-DATA                     VALUE 4101.
+       78  GRP-LAST-ROW                        VALUE 4102.
+       78  GRP-VSCROLL-POS                     VALUE 4103.
+       78  GRP-HSCROLL-POS                     VALUE 4104.
+       78  GRP-ACTION                          VALUE 4105.
+       78  GRP-SEARCH-TEXT                     VALUE 4106.
+       78  GRP-SEARCH-OPTIONS                  VALUE 4107.
+       78  GRP-INSERT-ROWS                     VALUE 4108.
+       78  GRP-ENTRY-REASON                    VALUE 4109.
+
+      * TREE-VIEW styles and properties
+
+       78  TVS-BOXED                           VALUE 1.
+       78  TVS-NO-BOX                          VALUE 2.
+       78  TVS-BUTTONS                         VALUE 4.
+       78  TVS-SHOW-LINES                      VALUE 8.
+       78  TVS-LINES-AT-ROOT                   VALUE 16.
+       78  TVS-SHOW-SEL-ALWAYS                 VALUE 32.
+
+       78  TVP-PARENT                          VALUE 1.
+       78  TVP-PLACEMENT                       VALUE 2.
+       78  TVP-ITEM                            VALUE 3.
+       78  TVP-BITMAP-HANDLE                   VALUE 4.
+       78  TVP-BITMAP-WIDTH                    VALUE 5.
+       78  TVP-ITEM-TO-ADD                     VALUE 4097.
+       78  TVP-ITEM-TEXT                       VALUE 4098.
+       78  TVP-NEXT-ITEM                       VALUE 4099.
+       78  TVP-ITEM-TO-DELETE                  VALUE 4100.
+       78  TVP-RESET-LIST                      VALUE 4101.
+       78  TVP-ENSURE-VISIBLE                  VALUE 4102.
+       78  TVP-EXPAND                          VALUE 4103.
+       78  TVP-ITEM-TO-EMPTY                   VALUE 4104.
+       78  TVP-BITMAP-NUMBER                   VALUE 4105.
+       78  TVP-HIDDEN-DATA                     VALUE 4106.
+       78  TVP-HAS-CHILDREN                    VALUE 4107.
+
+      * WEB-BROWSER styles and properties
+
+       78  WBS-NOTIFY-CHANGE                   VALUE 1.
+
+       78  WBP-BUSY                            VALUE 1.
+       78  WBP-TYPE                            VALUE 2.
+       78  WBP-STATUS-TEXT                     VALUE 3.
+       78  WBP-NAVIGATE-URL                    VALUE 4.
+       78  WBP-PROGRESS                        VALUE 5.
+       78  WBP-MAX-PROGRESS                    VALUE 6.
+       78  WBP-CUSTOM-PRINT-TEMPLATE           VALUE 7.
+       78  WBP-FILE-NAME                       VALUE 8.
+       78  WBP-GO-BACK                         VALUE 4097.
+       78  WBP-GO-FORWARD                      VALUE 4098.
+       78  WBP-GO-HOME                         VALUE 4099.
+       78  WBP-GO-SEARCH                       VALUE 4100.
+       78  WBP-REFRESH                         VALUE 4101.
+       78  WBP-STOP                            VALUE 4102.
+       78  WBP-PRINT                           VALUE 4103.
+       78  WBP-PRINT-NO-PROMPT                 VALUE 4104.
+       78  WBP-PRINT-PREVIEW                   VALUE 4105.
+       78  WBP-PAGE-SETUP                      VALUE 4106.
+       78  WBP-SAVE-AS                         VALUE 4107.
+       78  WBP-SAVE-AS-NO-PROMPT               VALUE 4108.
+       78  WBP-PROPERTIES                      VALUE 4109.
+       78  WBP-COPY-SELECTION                  VALUE 4110.
+       78  WBP-SELECT-ALL                      VALUE 4111.
+       78  WBP-CLEAR-SELECTION                 VALUE 4112.
+
+      * ACTIVE-X styles and properties
+
+       78  AXS-USE-RETURN                      VALUE 256.
+       78  AXS-USE-TAB                         VALUE 512.
+       78  AXS-USE-ALT                         VALUE 1024.
+
+       78  AXP-EVENT-LIST                      VALUE 1.
+
+      * DATE-ENTRY styles and properties
+
+       78  DAS-SHORT-DATE                      VALUE 0.
+       78  DAS-CENTURY-DATE                    VALUE 1.
+       78  DAS-LONG-DATE                       VALUE 2.
+       78  DAS-TIME                            VALUE 3.
+       78  DAS-NO-F4                           VALUE 4.
+       78  DAS-NO-UPDOWN                       VALUE 8.
+       78  DAS-RIGHT-ALIGN                     VALUE 16.
+       78  DAS-SHOW-NONE                       VALUE 32.
+       78  DAS-NOTIFY-CHANGE                   VALUE EFS-NOTIFY-CHANGE.
+       78  DAS-SPINNER                         VALUE EFS-SPINNER.
+
+       78  DAP-VALUE-FORMAT                    VALUE 1.
+       78  DAP-CALENDAR-FONT                   VALUE 2.
+       78  DAP-DISPLAY-FORMAT                  VALUE 4097.
+
+      * End of CONTROLS.DEF.
+

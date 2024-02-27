@@ -1,0 +1,498 @@
+      * ACUGUI.DEF - useful definitions for graphical systems.
+      * Last modified: 26-Sep-2002 - TDC.
+
+      * Copyright (c) 1992-2005 by Acucorp, Inc.  Users of ACUCOBOL
+      * may freely include this file in their COBOL source code.
+
+      * Mouse handling variables
+      * Structure and opcodes for W$MOUSE system routine
+
+       78  TEST-MOUSE-PRESENCE                 VALUE 0.
+       78  GET-MOUSE-STATUS                    VALUE 1.
+       78  GET-MOUSE-SCREEN-STATUS             VALUE 2.
+       78  SET-MOUSE-POSITION                  VALUE 3.
+       78  SET-MOUSE-SCREEN-POSITION           VALUE 4.
+       78  SET-MOUSE-SHAPE                     VALUE 5.
+       78  SET-DELAYED-MOUSE-SHAPE             VALUE 6.
+       78  GET-MOUSE-SHAPE                     VALUE 7.
+       78  CAPTURE-MOUSE                       VALUE 8.
+       78  RELEASE-MOUSE                       VALUE 9.
+       78  ENABLE-MOUSE                        VALUE 10.
+       78  SET-MOUSE-HELP                      VALUE 19.
+       78  SET-MOUSE-POSITION-EX               VALUE 23.
+       78  SET-MOUSE-SCREEN-POSITION-EX        VALUE 24.
+       78  SET-MOUSE-POSITION-PIXEL            VALUE 25.
+       78  SET-MOUSE-SCREEN-POSITION-PIXEL     VALUE 26.
+
+       01  MOUSE-INFO.
+           03  MOUSE-ROW                       PIC 9(4) COMP-1.
+               88  MOUSE-OFF-SCREEN            VALUE ZERO.
+           03  MOUSE-COL                       PIC 9(4) COMP-1.
+           03  LBUTTON-STATUS                  PIC 9.
+               88  LBUTTON-DOWN                VALUE 1.
+           03  MBUTTON-STATUS                  PIC 9.
+               88  MBUTTON-DOWN                VALUE 1.
+           03  RBUTTON-STATUS                  PIC 9.
+               88  RBUTTON-DOWN                VALUE 1.
+           03  MOUSE-ROW-EX                    PIC 9(6)V99 COMP-4, SYNC.
+           03  MOUSE-COL-EX                    PIC 9(6)V99 COMP-4.
+           03  MOUSE-ROW-PIXEL                 PIC 9(8) COMP-4.
+           03  MOUSE-COL-PIXEL                 PIC 9(8) COMP-4.
+
+       78  ARROW-POINTER                       VALUE 1.
+       78  BAR-POINTER                         VALUE 2.
+       78  CROSS-POINTER                       VALUE 3.
+       78  WAIT-POINTER                        VALUE 4.
+       78  HELP-POINTER                        VALUE 5.
+
+      * MOUSE-FLAGS settings
+
+       78  AUTO-MOUSE-HANDLING                 VALUE 1.
+       78  ALLOW-LEFT-DOWN                     VALUE 2.
+       78  ALLOW-LEFT-UP                       VALUE 4.
+       78  ALLOW-LEFT-DOUBLE                   VALUE 8.
+       78  ALLOW-MIDDLE-DOWN                   VALUE 16.
+       78  ALLOW-MIDDLE-UP                     VALUE 32.
+       78  ALLOW-MIDDLE-DOUBLE                 VALUE 64.
+       78  ALLOW-RIGHT-DOWN                    VALUE 128.
+       78  ALLOW-RIGHT-UP                      VALUE 256.
+       78  ALLOW-RIGHT-DOUBLE                  VALUE 512.
+       78  ALLOW-MOUSE-MOVE                    VALUE 1024.
+       78  ALWAYS-ARROW-CURSOR                 VALUE 2048.
+       78  ALLOW-ALL-SCREEN-ACTIONS            VALUE 16384.
+
+
+      * Menu handling variables
+      * W$MENU opcodes
+
+       78  WMENU-NEW                           VALUE 1.
+       78  WMENU-DESTROY                       VALUE 2.
+       78  WMENU-ADD                           VALUE 3.
+       78  WMENU-CHANGE                        VALUE 4.
+       78  WMENU-DELETE                        VALUE 5.
+       78  WMENU-CHECK                         VALUE 6.
+       78  WMENU-UNCHECK                       VALUE 7.
+       78  WMENU-ENABLE                        VALUE 8.
+       78  WMENU-DISABLE                       VALUE 9.
+       78  WMENU-SHOW                          VALUE 10.
+       78  WMENU-GET-MENU                      VALUE 11.
+       78  WMENU-INPUT                         VALUE 12.
+       78  WMENU-BLOCK                         VALUE 13.
+       78  WMENU-UNBLOCK                       VALUE 14.
+       78  WMENU-GET-BLOCK                     VALUE 15.
+       78  WMENU-SET-BLOCK                     VALUE 16.
+       78  WMENU-RELEASE                       VALUE 17.
+       78  WMENU-GET-CONFIGURATION             VALUE 18.
+       78  WMENU-SET-CONFIGURATION             VALUE 19.
+       78  WMENU-REFRESH                       VALUE 20.
+       78  WMENU-DESTROY-DELAYED               VALUE 21.
+       78  WMENU-GET-DELAYED-FLAG              VALUE 22.
+       78  WMENU-SET-DELAYED-FLAG              VALUE 23.
+       78  WMENU-NEW-POPUP                     VALUE 26.
+       78  WMENU-POPUP                         VALUE 27.
+
+      * W$MENU flags
+
+       78  W-UNCHECKED                         VALUE 0.
+       78  W-CHECKED                           VALUE 1.
+       78  W-ENABLED                           VALUE 0.
+       78  W-DISABLED                          VALUE 16.
+       78  W-SEPARATOR                         VALUE 256.
+
+       01  MENU-CONFIGURATION.
+           03  MENU-STYLE                         PIC 9 COMP-X.
+               88  MENU-IS-STATIC                 VALUE 0.
+               88  MENU-IS-POPUP                  VALUE 1.
+           03  MENU-CHECK-MARK                    PIC X.
+           03  MENU-SUBMENU-MARK                  PIC X.
+           03  MENU-COLOR-ATTRIBUTES.
+               05  MENU-NORMAL-COLOR-ATTRIBUTES.
+                   07  MENU-NORMAL-COLOR          PIC 9(4) COMP-X.
+                   07  MENU-NORMAL-COLOR-KEY-1    PIC 9(4) COMP-X.
+                   07  MENU-NORMAL-COLOR-KEY-2    PIC 9(4) COMP-X.
+               05  MENU-SELECTED-COLOR-ATTRIBUTES.
+                   07  MENU-SELECTED-COLOR        PIC 9(4) COMP-X.
+                   07  MENU-SELECTED-COLOR-KEY-1  PIC 9(4) COMP-X.
+                   07  MENU-SELECTED-COLOR-KEY-2  PIC 9(4) COMP-X.
+               05  MENU-DISABLED-COLOR-ATTRIBUTES.
+                   07  MENU-DISABLED-COLOR        PIC 9(4) COMP-X.
+                   07  MENU-DISABLED-COLOR-KEY-1  PIC 9(4) COMP-X.
+                   07  MENU-DISABLED-COLOR-KEY-2  PIC 9(4) COMP-X.
+           03  MENU-MONO-ATTRIBUTES.
+               05  MENU-NORMAL-MONO-ATTRIBUTES.
+                   07  MENU-NORMAL-MONO           PIC 9(4) COMP-X.
+                   07  MENU-NORMAL-MONO-KEY-1     PIC 9(4) COMP-X.
+                   07  MENU-NORMAL-MONO-KEY-2     PIC 9(4) COMP-X.
+               05  MENU-SELECTED-MONO-ATTRIBUTES.
+                   07  MENU-SELECTED-MONO         PIC 9(4) COMP-X.
+                   07  MENU-SELECTED-MONO-KEY-1   PIC 9(4) COMP-X.
+                   07  MENU-SELECTED-MONO-KEY-2   PIC 9(4) COMP-X.
+               05  MENU-DISABLED-MONO-ATTRIBUTES.
+                   07  MENU-DISABLED-MONO         PIC 9(4) COMP-X.
+                   07  MENU-DISABLED-MONO-KEY-1   PIC 9(4) COMP-X.
+                   07  MENU-DISABLED-MONO-KEY-2   PIC 9(4) COMP-X.
+
+      * Variables used by menu code created by GENMENU.
+
+       77  MENU-HANDLE                         PIC S9(9) COMP-4.
+       77  SUB-HANDLE-1                        PIC S9(9) COMP-4.
+       77  SUB-HANDLE-2                        PIC S9(9) COMP-4.
+       77  SUB-HANDLE-3                        PIC S9(9) COMP-4.
+       77  SUB-HANDLE-4                        PIC S9(9) COMP-4.
+
+      * MESSAGE BOX types
+
+       78  MB-OK                               VALUE 1.
+       78  MB-YES-NO                           VALUE 2.
+       78  MB-OK-CANCEL                        VALUE 3.
+       78  MB-YES-NO-CANCEL                    VALUE 4.
+
+      * MESSAGE BOX responses (MB-OK is both a type and a response)
+
+       78  MB-YES                              VALUE 1.
+       78  MB-NO                               VALUE 2.
+       78  MB-CANCEL                           VALUE 3.
+
+      * MESSAGE BOX icons
+
+       78  MB-DEFAULT-ICON                     VALUE 1.
+       78  MB-WARNING-ICON                     VALUE 2.
+       78  MB-ERROR-ICON                       VALUE 3.
+
+      * W$BITMAP opcodes
+
+       78  WBITMAP-DISPLAY                     VALUE 1.
+       78  WBITMAP-DESTROY                     VALUE 2.
+       78  WBITMAP-LOAD                        VALUE 3.
+       78  WBITMAP-LOAD-IMAGELIST              VALUE 5.
+       78  WBITMAP-DESTROY-IMAGELIST           VALUE 6.
+       78  WBITMAP-CAPTURE-IMAGE               VALUE 7.
+       78  WBITMAP-CAPTURE-DESKTOP             VALUE 8.
+       78  WBITMAP-CAPTURE-CLIPBOARD           VALUE 9.
+       78  WBITMAP-LOAD-PICTURE                VALUE 10.
+
+      * W$BITMAP option flags
+
+       78  WBITMAP-NO-FILL                     VALUE 1.
+       78  WBITMAP-NO-DOWNLOAD                 VALUE 2.
+
+      * W$BITMAP error values
+
+       78  WBERR-UNSUPPORTED                   VALUE 0.
+       78  WBERR-FILE-ERROR                    VALUE -1.
+       78  WBERR-NO-MEMORY                     VALUE -2.
+       78  WBERR-NOT-BITMAP                    VALUE -3.
+       78  WBERR-FORMAT-UNSUPPORTED            VALUE -4.
+       78  WBERR-MISSING-DLL                   VALUE -5.
+       78  WBERR-INVALID-HWND                  VALUE -6.
+       78  WBERR-INVALID-DATA                  VALUE -7.
+       78  WBERR-INVALID-CLIPBOARD             VALUE -8.
+       78  WBERR-INVALID-PALETTE               VALUE -9.
+       78  WBERR-CLIPBOARD-EMPTY               VALUE -10.
+
+      * W$TEXTSIZE library routine
+
+       01  TEXTSIZE-DATA.
+           03  TEXTSIZE-FONT                   HANDLE OF FONT,
+                                               VALUE NULL.
+           03  TEXTSIZE-WINDOW                 HANDLE OF WINDOW
+                                               VALUE NULL.
+           03  TEXTSIZE-SIZE-X                 PIC 9(7)V99 COMP-4.
+           03  TEXTSIZE-CELLS-X                PIC 9(7)V99 COMP-4.
+           03  TEXTSIZE-BASE-X                 PIC 9(9) COMP-4.
+           03  TEXTSIZE-SIZE-Y                 PIC 99V99 COMP-4.
+           03  TEXTSIZE-CELLS-Y                PIC 99V99 COMP-4.
+           03  TEXTSIZE-BASE-Y                 PIC 9(4) COMP-4.
+           03  TEXTSIZE-FLAGS                  PIC X COMP-X, VALUE ZERO.
+               88  TEXTSIZE-STRIP-SPACES       VALUE 1, FALSE ZERO.
+
+      * EVENT-ACTION values
+
+       78  EVENT-ACTION-NORMAL                 VALUE ZERO.
+       78  EVENT-ACTION-TERMINATE              VALUE 1.
+       78  EVENT-ACTION-CONTINUE               VALUE 2.
+       78  EVENT-ACTION-IGNORE                 VALUE 3.
+       78  EVENT-ACTION-FAIL                   VALUE 4.
+       78  EVENT-ACTION-COMPLETE               VALUE 5.
+       78  EVENT-ACTION-FAIL-TERMINATE         VALUE 7.
+
+
+      * Standard exception values from the windowing system
+
+       78  W-TIMEOUT                           VALUE 99.
+       78  W-CONVERSION-ERROR                  VALUE 98.
+       78  W-NO-FIELDS                         VALUE 97.
+       78  W-EVENT                             VALUE 96.
+       78  W-MESSAGE                           VALUE 95.
+
+      * Command events
+
+       78  CMD-CLOSE                           VALUE 1.
+       78  CMD-GOTO                            VALUE 3.
+       78  CMD-CLICKED                         VALUE 4.
+       78  CMD-DBLCLICK                        VALUE 5.
+       78  CMD-ACTIVATE                        VALUE 6.
+       78  CMD-TABCHANGED                      VALUE 7.
+       78  CMD-HELP                            VALUE 8.
+
+      * Notification events
+
+       78  NTF-SELCHANGE                       VALUE 4099.
+       78  NTF-CHANGED                         VALUE 4100.
+      * The next 7 apply to paged list-boxes only
+       78  NTF-PL-NEXT                         VALUE 4101.
+       78  NTF-PL-PREV                         VALUE 4102.
+       78  NTF-PL-NEXTPAGE                     VALUE 4103.
+       78  NTF-PL-PREVPAGE                     VALUE 4104.
+       78  NTF-PL-FIRST                        VALUE 4105.
+       78  NTF-PL-LAST                         VALUE 4106.
+       78  NTF-PL-SEARCH                       VALUE 4107.
+       78  NTF-RESIZED                         VALUE 4114.
+
+      * Message-style events
+
+       78  MSG-SB-NEXT                         VALUE 16385.
+       78  MSG-SB-PREV                         VALUE 16386.
+       78  MSG-SB-NEXTPAGE                     VALUE 16387.
+       78  MSG-SB-PREVPAGE                     VALUE 16388.
+       78  MSG-SB-THUMB                        VALUE 16389.
+       78  MSG-SB-THUMBTRACK                   VALUE 16390.
+       78  MSG-VALIDATE                        VALUE 16391.
+       78  MSG-BEGIN-ENTRY                     VALUE 16392.
+       78  MSG-FINISH-ENTRY                    VALUE 16393.
+       78  MSG-CANCEL-ENTRY                    VALUE 16394.
+       78  MSG-GOTO-CELL                       VALUE 16395.
+       78  MSG-GOTO-CELL-MOUSE                 VALUE 16396.
+       78  MSG-MENU-INPUT                      VALUE 16397.
+       78  MSG-INIT-MENU                       VALUE 16398.
+       78  MSG-END-MENU                        VALUE 16399.
+       78  MSG-BITMAP-CLICKED                  VALUE 16400.
+       78  MSG-BITMAP-DBLCLICK                 VALUE 16401.
+       78  MSG-HEADING-CLICKED                 VALUE 16402.
+       78  MSG-HEADING-DBLCLICK                VALUE 16403.
+       78  MSG-GOTO-CELL-DRAG                  VALUE 16404.
+       78  MSG-HEADING-DRAGGED                 VALUE 16405.
+       78  MSG-BEGIN-DRAG                      VALUE 16406.
+       78  MSG-END-DRAG                        VALUE 16407.
+       78  MSG-BEGIN-HEADING-DRAG              VALUE 16408.
+       78  MSG-END-HEADING-DRAG                VALUE 16409.
+       78  MSG-COL-WIDTH-CHANGED               VALUE 16410.
+       78  MSG-TV-SELCHANGING                  VALUE 16411.
+       78  MSG-TV-SELCHANGE                    VALUE 16412.
+       78  MSG-TV-EXPANDING                    VALUE 16413.
+       78  MSG-TV-EXPANDED                     VALUE 16414.
+       78  MSG-CLOSE                           VALUE 16415.
+       78  MSG-SPIN-UP                         VALUE 16416.
+       78  MSG-SPIN-DOWN                       VALUE 16417.
+       78  MSG-PAGED-NEXT                      VALUE 16419.
+       78  MSG-PAGED-PREV                      VALUE 16420.
+       78  MSG-PAGED-NEXTPAGE                  VALUE 16421.
+       78  MSG-PAGED-PREVPAGE                  VALUE 16422.
+       78  MSG-PAGED-FIRST                     VALUE 16423.
+       78  MSG-PAGED-LAST                      VALUE 16424.
+       78  MSG-GRID-RBUTTON-DOWN               VALUE 16426.
+       78  MSG-GRID-RBUTTON-UP                 VALUE 16427.
+       78  MSG-TV-DBLCLICK                     VALUE 16428.
+       78  MSG-WB-BEFORE-NAVIGATE              VALUE 16429.
+       78  MSG-WB-NAVIGATE-COMPLETE            VALUE 16430.
+       78  MSG-WB-DOWNLOAD-BEGIN               VALUE 16431.
+       78  MSG-WB-DOWNLOAD-COMPLETE            VALUE 16432.
+       78  MSG-WB-PROGRESS-CHANGE              VALUE 16433.
+       78  MSG-WB-STATUS-TEXT-CHANGE           VALUE 16434.
+       78  MSG-WB-TITLE-CHANGE                 VALUE 16435.
+       78  MSG-AX-EVENT                        VALUE 16436.
+       78  MSG-NET-EVENT                       VALUE 16437.
+
+      * Entry Field ACTION values
+
+       78  ACTION-CUT                          VALUE 1.
+       78  ACTION-COPY                         VALUE 2.
+       78  ACTION-PASTE                        VALUE 3.
+       78  ACTION-DELETE                       VALUE 4.
+       78  ACTION-UNDO                         VALUE 5.
+
+      * Grid ACTION values
+
+       78  ACTION-FIRST-PAGE                   VALUE 10.
+       78  ACTION-LAST-PAGE                    VALUE 11.
+       78  ACTION-CURRENT-PAGE                 VALUE 12.
+       78  ACTION-HIDE-DRAG                    VALUE 13.
+       78  ACTION-PREVIOUS                     VALUE 14.
+       78  ACTION-PREVIOUS-PAGE                VALUE 15.
+       78  ACTION-NEXT-PAGE                    VALUE 16.
+       78  ACTION-NEXT                         VALUE 17.
+
+      * Window ACTION values
+
+       78  ACTION-MINIMIZE                     VALUE 20.
+       78  ACTION-MAXIMIZE                     VALUE 21.
+       78  ACTION-RESTORE                      VALUE 22.
+
+      * Paged grid FILE-POS values
+
+       78  PAGED-AT-START                      VALUE 2147418113.
+       78  PAGED-AT-END                        VALUE 2147418114.
+       78  PAGED-EMPTY                         VALUE 2147418115.
+
+      * Grid search options
+
+       01  GRID-SEARCH-OPTIONS                 VALUE ALL ZEROS.
+           03  GRID-SEARCH-DIRECTION           PIC 9.
+               88  GRID-SEARCH-FORWARDS        VALUE ZERO, FALSE 1.
+
+           03  GRID-SEARCH-WRAP-FLAG           PIC 9.
+               88  GRID-SEARCH-WRAP            VALUE ZERO, FALSE 1.
+
+           03  GRID-SEARCH-CASE-FLAG           PIC 9.
+               88  GRID-SEARCH-IGNORE-CASE     VALUE ZERO, FALSE 1.
+
+           03  GRID-SEARCH-MATCH-FLAG          PIC 9.
+               88  GRID-SEARCH-MATCH-ANY       VALUE ZERO.
+               88  GRID-SEARCH-MATCH-LEADING   VALUE 1.
+               88  GRID-SEARCH-MATCH-ALL       VALUE 2.
+
+           03  GRID-SEARCH-LOCATION-FLAG       PIC 9.
+               88  GRID-SEARCH-VISIBLE         VALUE ZERO.
+               88  GRID-SEARCH-HIDDEN          VALUE 1.
+               88  GRID-SEARCH-ALL-DATA        VALUE 2.
+
+           03  GRID-SEARCH-SKIP-FLAG           PIC 9.
+               88  GRID-SEARCH-SKIP-CURRENT    VALUE ZERO, FALSE 1.
+
+           03  GRID-SEARCH-CURSOR-FLAG         PIC 9.
+               88  GRID-SEARCH-MOVES-CURSOR    VALUE ZERO, FALSE 1.
+
+           03  GRID-SEARCH-COLUMN              PIC 9(5).
+               88  GRID-SEARCH-ALL-COLUMNS     VALUE ZERO.
+
+      * Grid search status flags
+
+       78  GRDSRCH-NOT-FOUND                   VALUE 0.
+       78  GRDSRCH-FOUND                       VALUE 1.
+       78  GRDSRCH-WRAPPED                     VALUE 2.
+
+      * Grid FINISH-REASON values
+
+       78  GRFR-BLANK-PAST-END                 VALUE -1.
+       78  GRFR-TERMINATING                    VALUE -2.
+       78  GRFR-CELL-CLICKED                   VALUE -3.
+       78  GRFR-NAVIGATION-KEY                 VALUE -4.
+       78  GRFR-ESCAPE-KEY                     VALUE -5.
+       78  GRFR-ENTER-KEY                      VALUE -6.
+       78  GRFR-TAB-KEY                        VALUE -7.
+
+      * Flags for win$playsound
+
+       78  SND-SYNC                            VALUE 0.
+       78  SND-ASYNC                           VALUE 1.
+       78  SND-LOOP                            VALUE 8.
+       78  SND-NOSTOP                          VALUE 16.
+
+      * Tree-View control placement flags
+
+       78  TVPLACE-FIRST                       VALUE 4294901761.
+       78  TVPLACE-LAST                        VALUE 0.
+       78  TVPLACE-SORT                        VALUE 4294901763.
+
+      * Tree-View NEXT-ITEM values
+
+       78  TVNI-CHILD                          VALUE 1.
+       78  TVNI-FIRST-VISIBLE                  VALUE 2.
+       78  TVNI-NEXT                           VALUE 3.
+       78  TVNI-NEXT-VISIBLE                   VALUE 4.
+       78  TVNI-PARENT                         VALUE 5.
+       78  TVNI-PREVIOUS                       VALUE 6.
+       78  TVNI-PREVIOUS-VISIBLE               VALUE 7.
+       78  TVNI-ROOT                           VALUE 8.
+
+      * Tree-View miscellaneous flags
+
+       78  TVFLAG-COLLAPSE                     VALUE 1.
+       78  TVFLAG-EXPAND                       VALUE 2.
+       78  TVFLAG-PROGRAM                      VALUE ZERO.
+       78  TVFLAG-MOUSE                        VALUE 1.
+       78  TVFLAG-KEYBOARD                     VALUE 2.
+       78  TVFLAG-NORMAL                       VALUE 1.
+       78  TVFLAG-BOLD                         VALUE 2.
+
+      * Paged list sort-order values
+
+       78  PL-SORT-DEFAULT                     VALUE 0.
+       78  PL-SORT-NONE                        VALUE 1.
+       78  PL-SORT-NATIVE                      VALUE 2.
+       78  PL-SORT-NATIVE-IGNORE-CASE          VALUE 3.
+
+      * Date-Entry VALUE-FORMAT flags
+
+       78  DAVF-YYYYMMDD                       VALUE 0.
+       78  DAVF-YYMMDD                         VALUE 1.
+       78  DAVF-HHMMSShh                       VALUE 2.
+       78  DAVF-HHMMSS                         VALUE 3.
+       78  DAVF-YYYYMMDDHHMMSShh               VALUE 4.
+
+      * Bitmap control flags
+       78  BM-CORNER-COLOR                     VALUE x#1000000.
+
+      *  Predefined handle values for MS Windows registry
+
+      *  Windows 3.2:
+       78  HKEY_CLASSES_ROOT_31                VALUE 1.
+
+      *  32-bit Windows:
+       78  HKEY_CLASSES_ROOT                   VALUE 2147483648.
+       78  HKEY_CURRENT_USER                   VALUE 2147483649.
+       78  HKEY_LOCAL_MACHINE                  VALUE 2147483650.
+       78  HKEY_USERS                          VALUE 2147483651.
+       78  HKEY_PERFORMANCE_DATA               VALUE 2147483652.
+       78  HKEY_CURRENT_CONFIG                 VALUE 2147483653.
+       78  HKEY_DYN_DATA                       VALUE 2147483654.
+
+      * 32-bit Windows Registry Value Types
+       78  REG_NONE                       VALUE ZERO.
+       78  REG_SZ                         VALUE 1.
+       78  REG_EXPAND_SZ                  VALUE 2.
+       78  REG_BINARY                     VALUE 3.
+       78  REG_DWORD                      VALUE 4.
+       78  REG_DWORD_LITTLE_ENDIAN        VALUE 4.
+       78  REG_DWORD_BIG_ENDIAN           VALUE 5.
+       78  REG_LINK                       VALUE 6.
+       78  REG_MULTI_SZ                   VALUE 7.
+       78  REG_RESOURCE_LIST              VALUE 8.
+       78  REG_FULL_RESOURCE_DESCRIPTOR   VALUE 9.
+       78  REG_RESOURCE_REQUIREMENTS_LIST VALUE 10.
+
+       01  WIN32-REGISTRY-VALUE-TYPE          USAGE IS UNSIGNED-LONG.
+           88  TYPE-IS-REG_NONE                       VALUE ZERO.
+           88  TYPE-IS-REG_SZ                         VALUE 1.
+           88  TYPE-IS-REG_EXPAND_SZ                  VALUE 2.
+           88  TYPE-IS-REG_BINARY                     VALUE 3.
+           88  TYPE-IS-REG_DWORD                      VALUE 4.
+           88  TYPE-IS-REG_DWORD_LITTLE_ENDIAN        VALUE 4.
+           88  TYPE-IS-REG_DWORD_BIG_ENDIAN           VALUE 5.
+           88  TYPE-IS-REG_LINK                       VALUE 6.
+           88  TYPE-IS-REG_MULTI_SZ                   VALUE 7.
+           88  TYPE-IS-REG_RESOURCE_LIST              VALUE 8.
+           88  TYPE-IS-REG_FULL_RESOURCE_DESCRIPTOR   VALUE 9.
+           88  TYPE-IS-REG_RESOURCE_REQUIREMENTS_LIST VALUE 10.
+
+      *  32-bit Windows Registry Key Options:
+       78  REG_OPTION_NON_VOLATILE               VALUE 0.
+       78  REG_OPTION_VOLATILE                   VALUE 1.
+
+      *  32-bit Windows Registry Access Rights:
+       78  KEY_QUERY_VALUE         VALUE 1.
+       78  KEY_SET_VALUE           VALUE 2.
+       78  KEY_CREATE_SUB_KEY      VALUE 4.
+       78  KEY_ENUMERATE_SUB_KEYS  VALUE 8.
+       78  KEY_NOTIFY              VALUE 16.
+       78  KEY_CREATE_LINK         VALUE 32.
+       78  KEY_WRITE               VALUE 131078.
+       78  KEY_READ                VALUE 131097.
+       78  KEY_EXECUTE             VALUE 131097.
+       78  KEY_ALL_ACCESS          VALUE 983103.
+
+      *  32-bit Windows Registry Disposition Values:
+       78  REG_CREATED_NEW_KEY               VALUE 1.
+       78  REG_OPENED_EXISTING_KEY           VALUE 2.
+
+      * end of acugui.def
