@@ -2,6 +2,7 @@
        PROGRAM-ID.          TICTACTOE.
        AUTHOR.              ISAAC GARCIA PEVERI
        DATE-WRITTEN.        26.02.2024 - 27.02.2024
+      * LAST EDIT           29.02.2024.
        REMARKS.             A MODERN TIC TAC TOE WRITTEN IN COBOL.
       /
       ******************************************************************
@@ -11,6 +12,21 @@
       *
       *         THIS PROGRAM IS A MODERN TIC TAC TOE GAME WITH
       *         WITH INTERACTIVE GRAPHICAL USER INTERFACE
+      ******************************************************************
+      ******************************************************************
+      *         BUG FIXES:
+      *             FIX.1: TWO ABNORMAL SITUATIONS WHICH CPU PLACES
+      *                    A WRONG MOVE, LETTING THE PLAYER WIN THE GAME
+      *
+      *             FIX.2: PLAYER PLACED ON ANGLE, CPU IN CENTRE AND
+      *                    AGAIN PLAYER ON THE OPPOSITE ANGLE.
+      *
+      *
+      *             FIX.3: BUG PRESSING AN OCCUPIED CELL WAS TRIGGERING
+      *                    COMPUTER MOVE.
+      *
+      *             FIX.4: IF LAST MOVE WAS FROM CPU AND GAME ENDS DRAW,
+      *                    MESSAGE WAS NOT APPEARING.
       ******************************************************************
       /
        ENVIRONMENT DIVISION.
@@ -248,18 +264,21 @@
                       MOVE WK-O TO ROW-EL(1)
                       MODIFY PB-11 BITMAP-HANDLE BMP-O
                       MOVE 1    TO IDX
+FIX.3                 PERFORM COMPUTER-MOVE
                    END-IF
               WHEN KEY-STATUS = 1002
                    IF ROW-EL(2) = SPACES
                       MOVE WK-O TO ROW-EL(2)
                       MODIFY PB-12 BITMAP-HANDLE BMP-O
                       MOVE 2    TO IDX
+FIX.3                 PERFORM COMPUTER-MOVE
                    END-IF
               WHEN KEY-STATUS = 1003
                    IF ROW-EL(3) = SPACES
                       MOVE WK-O TO ROW-EL(3)
                       MODIFY PB-13 BITMAP-HANDLE BMP-O
                       MOVE 3    TO IDX
+FIX.3                 PERFORM COMPUTER-MOVE
                    END-IF
 
       * >...  SECOND ROW BUTTON CLICKS
@@ -268,18 +287,21 @@
                       MOVE WK-O TO ROW-EL(4)
                       MODIFY PB-21 BITMAP-HANDLE BMP-O
                       MOVE 4    TO IDX
+FIX.3                 PERFORM COMPUTER-MOVE
                    END-IF
               WHEN KEY-STATUS = 2002
                    IF ROW-EL(5) = SPACES
                       MOVE WK-O TO ROW-EL(5)
                       MODIFY PB-22 BITMAP-HANDLE BMP-O
                       MOVE 5    TO IDX
+FIX.3                 PERFORM COMPUTER-MOVE
                    END-IF
               WHEN KEY-STATUS = 2003
                    IF ROW-EL(6) = SPACES
                       MOVE WK-O TO ROW-EL(6)
                       MODIFY PB-23 BITMAP-HANDLE BMP-O
                       MOVE 6    TO IDX
+FIX.3                 PERFORM COMPUTER-MOVE
                    END-IF
 
       * >...  THIRD ROW BUTTON CLICKS
@@ -288,29 +310,27 @@
                       MOVE WK-O TO ROW-EL(7)
                       MODIFY PB-31 BITMAP-HANDLE BMP-O
                       MOVE 7    TO IDX
+FIX.3                 PERFORM COMPUTER-MOVE
                    END-IF
               WHEN KEY-STATUS = 3002
                    IF ROW-EL(8) = SPACES
                       MOVE WK-O TO ROW-EL(8)
                       MODIFY PB-32 BITMAP-HANDLE BMP-O
                       MOVE 8    TO IDX
+FIX.3                 PERFORM COMPUTER-MOVE
                    END-IF
               WHEN KEY-STATUS = 3003
                    IF ROW-EL(9) = SPACES
                       MOVE WK-O TO ROW-EL(9)
                       MODIFY PB-33 BITMAP-HANDLE BMP-O
                       MOVE 9    TO IDX
+FIX.3                 PERFORM COMPUTER-MOVE
                    END-IF
 
               WHEN KEY-STATUS = 5001
                    PERFORM INITIALIZE-GAME
 
            END-EVALUATE
-
-      * .. IF USER DID A MOVE, LET'S GIVE THE TURN TO THE COMPUTER...
-           IF ROW-EL(IDX) NOT = SPACES
-              PERFORM COMPUTER-MOVE
-           END-IF
 
            MOVE 4 TO ACCEPT-CONTROL
            .
@@ -340,18 +360,6 @@
                  END-EVALUATE
               END-IF
 
-      * ..... CHECKING IF GRID IS FULL
-              MOVE ZERO TO EL-COUNT
-              PERFORM VARYING IDX-2 FROM 1 BY 1 UNTIL IDX-2 > 9
-                 IF ROW-EL(IDX-2) NOT = SPACES
-                    ADD 1 TO EL-COUNT
-                 END-IF
-              END-PERFORM
-
-              IF EL-COUNT = 9
-                 SET GRID-FULL TO TRUE
-              END-IF
-
               IF ROW-EL(COMPUTER-CHOSE) = SPACES
                 IF NOT MOVE-DONE
                     SET MOVE-DONE    TO TRUE
@@ -372,6 +380,8 @@
                     END-EVALUATE
                  END-IF
               END-IF
+
+FIX.4         PERFORM CHECK-GRID-FULL
 
       * ..... CHECKING IF PLAYER OR CPU WON
               PERFORM CHECK-WINNER
@@ -398,6 +408,25 @@
            .
       /
       * --------------------------------------------------------------
+      *   CHECKING IF GRID IS FULL TO END GAME EVEN IF LAST MOVE
+      *   WAS THE CPU
+      * --------------------------------------------------------------
+       CHECK-GRID-FULL.
+      * . CHECKING IF GRID IS FULL
+          MOVE ZERO TO EL-COUNT
+
+          PERFORM VARYING IDX-2 FROM 1 BY 1 UNTIL IDX-2 > 9
+             IF ROW-EL(IDX-2) NOT = SPACES
+                ADD 1 TO EL-COUNT
+             END-IF
+          END-PERFORM
+
+          IF EL-COUNT = 9
+             SET GRID-FULL TO TRUE
+          END-IF
+          .
+      /
+      * --------------------------------------------------------------
       *   CHECKING ALL THE POSSIBLE COMBINATIONS, GIVING PRIORITY
       *   TO THE COMPUTER.
       * --------------------------------------------------------------
@@ -410,7 +439,7 @@
       * >>>>> BY KEEPING THIS "IF", PLAYER WILL NEVER WIN A GAME!!!
       * ---
       * ---
-           IF IDX = 1 OR 3 OR 7 OR 9 AND FIRST-TIME
+           IF (IDX = 1 OR 3 OR 7 OR 9) AND FIRST-TIME
               MOVE 5 TO COMPUTER-CHOSE
               SET OTHER-TIME TO TRUE
               MOVE ZERO TO IDX
@@ -418,6 +447,100 @@
 
       * ---
            EVALUATE TRUE
+
+      ***---
+FIX.1 * >>>**** BUGFIX 20240229.1
+FIX.1 *         THERE ARE 2 SITUATIONS, WHICH
+FIX.1 *         THE COMPUTER IS NOT PLACING HIS MOVE CORRECTLY, ALLOWING
+FIX.1 *         THE PLAYER TO WIN: THOSE SITUATIONS ARE DESCRIBED BELOW.
+FIX.1
+FIX.1 * > SITUATION 1: PLAYER PLACED ON CELLS 3 AND 4, BUT CPU PLACES
+FIX.1 *                HIS MOVE ON CELL 2:
+FIX.1
+FIX.1 * ........... +-----------+
+FIX.1 * ........... +   |   | O +  <-- I HAVE TO AVOID THAT THE CPU
+FIX.1 * ........... +-----------+      PLACES HIS MOVE ON 2TH CELL.
+FIX.1 * ........... + O | X |   +
+FIX.1 * ........... +-----------+
+FIX.1 * ........... +   |   |   +
+FIX.1 * ........... +-----------+
+FIX.1
+FIX.1 *                THE RIGHT CPU MOVE SHOULD BE TO PLACE IN CELL 9
+FIX.1
+FIX.1 * ........... +-----------+
+FIX.1 * ........... +   | * | O +  <-- CPU INCORRECT PREVISION
+FIX.1 * ........... +-----------+
+FIX.1 * ........... + O | X |   +
+FIX.1 * ........... +-----------+
+FIX.1 * ........... +   |   | X +  <-- CORRECT MOVE
+FIX.1 * ........... +-----------+
+FIX.1               WHEN ROW-EL(3) = WK-O
+FIX.1               AND  ROW-EL(4) = WK-O
+FIX.1               AND  ROW-EL(5) = WK-X
+FIX.1               AND  ROW-EL(9) = SPACES
+FIX.1                   MOVE WK-X           TO ROW-EL(9)
+FIX.1                    MOVE 9             TO COMPUTER-CHOSE
+FIX.1
+FIX.1 * > SITUATION 2: IS THE MIRRORED SAME SITUATION:
+FIX.1
+FIX.1 * ........... +-----------+
+FIX.1 * ........... + O |   |   +
+FIX.1 * ........... +-----------+
+FIX.1 * ........... +   | X | O +
+FIX.1 * ........... +-----------+
+FIX.1 * ........... +   | X |   +  <-- CPU PLACEMENT WRONG
+FIX.1 * ........... +-----------+
+FIX.1
+FIX.1 * ........... +-----------+
+FIX.1 * ........... + O |   |   +
+FIX.1 * ........... +-----------+
+FIX.1 * ........... +   | X | O +
+FIX.1 * ........... +-----------+
+FIX.1 * ........... + X | * |   +  <-- CORRECT POSITION IS 7TH CELL
+FIX.1 * ........... +-----------+
+FIX.1               WHEN ROW-EL(1) = WK-O
+FIX.1                AND ROW-EL(6) = WK-O
+FIX.1                AND ROW-EL(5) = WK-X
+FIX.1                AND ROW-EL(7) = SPACES
+FIX.1                   MOVE WK-X           TO ROW-EL(7)
+FIX.1                   MOVE SPACES         TO ROW-EL(8)
+FIX.1                    MOVE 7             TO COMPUTER-CHOSE
+FIX.1
+FIX.1 * <<<**** END FIX
+      ***---
+FIX.2 * > SITUATION 3: PLAYER PLACED ON ANGLE, CPU IN CENTRE AND AGAIN
+FIX.2 *                PLAYER ON THE OPPOSITE ANGLE AS SHOWN
+FIX.2 *                IN THIS CASE, CPU SHOUD CHOSE A SIDE CELL AND
+FIX.2 *                NOT AN ANGLE
+
+FIX.2 * ........... +-----------+        +-----------+
+FIX.2 * ........... +   |   | O +        + O |   |   +
+FIX.2 * ........... +-----------+        +-----------+
+FIX.2 * ........... +   | X |   +   OR   +   | X |   +
+FIX.2 * ........... +-----------+        +-----------+
+FIX.2 * ........... + O |   |   +        +   |   | O +
+FIX.2 * ........... +-----------+        +-----------+
+
+FIX.2               WHEN ROW-EL(3) = WK-O
+FIX.2                AND ROW-EL(5) = WK-X
+FIX.2                AND ROW-EL(7) = WK-O
+FIX.2                AND ROW-EL(8) = SPACES | CELL TO PLACE MOVE
+FIX.2                AND ROW-EL(2) = SPACES | THIS MUST BE EMPTY!
+FIX.2                   MOVE WK-X           TO ROW-EL(8)
+FIX.2                    MOVE 8             TO COMPUTER-CHOSE
+
+FIX.2               WHEN ROW-EL(1) = WK-O
+FIX.2                AND ROW-EL(5) = WK-X
+FIX.2                AND ROW-EL(9) = WK-O
+FIX.2                AND ROW-EL(2) = SPACES | CELL TO PLACE MOVE
+FIX.2                AND ROW-EL(4) = SPACES | THIS MUST BE EMPTY
+FIX.2                   MOVE WK-X           TO ROW-EL(2)
+FIX.2                    MOVE 2             TO COMPUTER-CHOSE
+      ***---
+FIX.2 * >>>**** BUGFIX 20240229.2
+
+FIX.2 * <<<**** END FIX
+      ***---
 
       * ---
       * ---
